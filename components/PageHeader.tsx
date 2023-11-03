@@ -3,18 +3,28 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import logo from "../assets/logo.jpg";
-import { BellIcon, MenuIcon, Mic, Search, Upload, User } from "lucide-react";
+import {
+  ArrowLeft,
+  BellIcon,
+  MenuIcon,
+  Mic,
+  Search,
+  Upload,
+  User,
+} from "lucide-react";
 import Button from "./Button";
 
 const PageHeader = () => {
   const [fullWidthSearch, setFullWidthSearch] = useState(false);
   return (
     <div
-      className={`gap-10 lg:gap-20 justify-between items-center pt-2 mb-6 mx-4 ${
-        fullWidthSearch ? "hidden" : "flex"
-      }`}
+      className={` flex gap-10 lg:gap-20 justify-between items-center pt-2 mb-6 mx-4 `}
     >
-      <div className="flex gap-4 items-center flex-shrink-0">
+      <div
+        className={`flex gap-4 items-center flex-shrink-0 ${
+          fullWidthSearch ? "hidden" : "flex"
+        }`}
+      >
         <Button variant={"ghost"} size={"icon"}>
           <MenuIcon />
         </Button>
@@ -23,10 +33,21 @@ const PageHeader = () => {
         </Link>
       </div>
       <form
-        className={`md:flex gap-4 flex-grow justify-center ${
-          fullWidthSearch ? "flex" : "hidden"
+        className={` gap-4 flex-grow justify-center ${
+          fullWidthSearch ? "flex" : "hidden md:flex"
         }`}
       >
+        {fullWidthSearch && (
+          <Button
+            onClick={() => setFullWidthSearch(false)}
+            type="button"
+            className="flex-shrink-0"
+            size={"icon"}
+            variant={"ghost"}
+          >
+            <ArrowLeft />
+          </Button>
+        )}
         <div className="flex flex-grow max-w-[600px] ">
           <input
             type="search"
